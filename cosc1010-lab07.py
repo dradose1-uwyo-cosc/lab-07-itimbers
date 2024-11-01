@@ -1,11 +1,11 @@
-# Your Name Here
+# Isaiah Timbers
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
+# Submission Date: 10/31/24
+# Lab 07
+# Lab Section: 13
 # Sources, people worked with, help given to: 
-# your
-# comments
+# https://stackoverflow.com/questions/68223772/using-a-while-loop-to-calculate-the-factorial-of-user-input
+# https://stackoverflow.com/questions/71827868/how-to-sum-input-numbers-using-while-loop-python
 # here
 
 
@@ -17,7 +17,19 @@
     # If a user did not enter a number output a statement saying so
 # You will continue to prompt the user until a proper integer value is entered
 
+
+while True:
+    upper_bound = input("enter positive integer for calculation")
+    if upper_bound.isdigit() and int(upper_bound) > 0:
+        upper_bound = int(upper_bound)
+        break
+    else:
+        print("enter valid positive integer")
+
 factorial = 1
+for i in range(1, upper_bound + 1):
+    factorial*= i
+
 
 print(f"The result of the factorial based on the given bound is {factorial}")
 
@@ -39,6 +51,15 @@ print("*"*75)
 
 num_sum = 0 
 
+while True:
+    user_input = input("Eter ineger to add to sum (or 'exit' to finish): ")
+    if user_input.lower() == 'exit':
+        break
+    elif user_input.lstrip('-').isdigit():
+        num_sum += int(user_input)
+    else:
+        print("input valid integer")
+
 print(f"Your final sum is {num_sum}")
 
 print("*"*75)
@@ -59,4 +80,36 @@ print("*"*75)
 # Print the result of the equation
 # Again, loop through prompting the user for input until `exit` in any casing is input 
 
+while True:
+    expression = input("Enter a calculation (eg. 2 + 2) or type 'exit' to quit: ")
+    if expression.lower() == 'exit':
+        break
+    parts = expression.split()
+    if len(parts) != 3:
+        print("enter in 'operand operator operand' format")
+        continue
+    
+    operand1, operator, operand2 = parts
+    if operand1.isdigit() and operand2.isdigit():
+        operand1, operand2 = int(operand1), int(operand2)
+        if operator == '+':
+            result = operand1 + operand2
+        elif operator == '-':
+            result = operand1 - operand2
+        elif operator == '*':
+            result = operand1 * operand2
+        elif operator == '/':
+            if operand2 != 0:
+                result == operand1 / operand2
+            else:
+                print("can't divide by zero")
+                continue
+        else:
+            print("unsupported operator. use +, -, *, or /.")
+            continue
+        
+        print(f"the result is: {result}")
+    else:
+        print("please enter valid integer operands.")
+        
         
